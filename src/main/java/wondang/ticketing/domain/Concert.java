@@ -30,6 +30,7 @@ public class Concert {
     @OneToMany(mappedBy = "concert", cascade = CascadeType.ALL)
     private List<Seat> seats = new ArrayList<>();
 
+    // todo: price는 ticket에서 받도록 변경
     @Builder
     public static Concert Concert(String name, int cntSeat, LocalDateTime startDateTime, int price) {
         Concert concert = new Concert();

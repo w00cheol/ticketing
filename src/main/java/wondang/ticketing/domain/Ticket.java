@@ -1,14 +1,11 @@
 package wondang.ticketing.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity @Table(name = "ticketing")
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter @Setter
 public class Ticket {
 
@@ -40,6 +37,9 @@ public class Ticket {
         member.getTickets().add(ticket);
 
         ticket.setSeat(seat);
+        seat.setTicket(ticket);
+        seat.setStatus(SeatStatus.OCCUPIED);
+
         ticket.setTotalPrice(totalPrice);
         ticket.setStatus(TicketStatus.PAID);
 
