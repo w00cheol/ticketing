@@ -13,6 +13,7 @@ import lombok.Setter;
 public class Ticket {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ticket_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -40,10 +41,8 @@ public class Ticket {
 
         ticket.setSeat(seat);
         ticket.setTotalPrice(totalPrice);
-
         ticket.setStatus(TicketStatus.PAID);
 
         return ticket;
     }
-
 }
