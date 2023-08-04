@@ -3,7 +3,7 @@ package wondang.ticketing.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity @Table(name = "ticketing")
+@Entity @Table(name = "ticket")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter @Setter
