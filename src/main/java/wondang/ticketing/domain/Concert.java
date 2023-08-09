@@ -36,7 +36,7 @@ public class Concert {
     public Concert(String name, LocalDateTime startDateTime) {
         this.name = name;
         this.startDate = startDateTime.toLocalDate();
-        this.startTime = startDateTime.toLocalTime().truncatedTo(ChronoUnit.MILLIS));
+        this.startTime = startDateTime.toLocalTime().truncatedTo(ChronoUnit.MILLIS);
     }
 
     public void addSeat(int cnt, int price) {
