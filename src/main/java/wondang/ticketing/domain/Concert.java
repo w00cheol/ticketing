@@ -53,4 +53,15 @@ public class Concert {
         this.cntSeat += cnt;
     }
 
+    public Boolean isOver() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDate date = now.toLocalDate();
+        LocalTime time = now.toLocalTime();
+
+        if (this.startDate.isEqual(date)) {
+//            return this.startTime.isBefore(time) || this.startTime.isAfter(time);
+            return !this.startTime.isAfter(time);
+        }
+        return this.startDate.isBefore(now());
+    }
 }
