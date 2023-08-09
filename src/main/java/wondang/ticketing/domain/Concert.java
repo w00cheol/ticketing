@@ -9,6 +9,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.time.LocalDate.now;
+
 @Entity @Table(name = "concert")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
@@ -21,7 +23,7 @@ public class Concert {
 
     private String name;
 
-    private int cntSeat;
+    private int cntSeat = 0;
 
     private LocalDate startDate;
 
@@ -30,25 +32,25 @@ public class Concert {
     @OneToMany(mappedBy = "concert", cascade = CascadeType.ALL)
     private List<Seat> seats = new ArrayList<>();
 
-    // todo: price는 ticket에서 받도록 변경
     @Builder
-    public static Concert Concert(String name, int cntSeat, LocalDateTime startDateTime, int price) {
-        Concert concert = new Concert();
+    public Concert(String name, LocalDateTime startDateTime) {
+        this.name = name;
+        this.startDate = startDateTime.toLocalDate();
+        this.startTime = startDateTime.toLocalTime().truncatedTo(ChronoUnit.MILLIS));
+    }
 
-        concert.setName(name);
-        concert.setCntSeat(cntSeat);
-        concert.setStartDate(startDateTime.toLocalDate());
-        concert.setStartTime(startDateTime.toLocalTime().truncatedTo(ChronoUnit.MILLIS));
-
-        for (int i = 0; i < cntSeat; i++) {
-            concert.getSeats().add(Seat.builder()
-                    .concert(concert)
-                    .number(i + 1)
-                    .price(price)
-                    .build());
+    public void addSeat(int cnt, int price) {
+        for (int i = 0; i < cnt; i++) {
+            this.seats.add(
+                    Seat.builder()
+                            .concert(this)
+                            .number(cntSeat + i + 1)
+                            .price(price)
+                            .build()
+            );
         }
 
-        return concert;
+        this.cntSeat += cnt;
     }
 
 }
