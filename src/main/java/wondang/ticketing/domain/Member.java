@@ -31,8 +31,8 @@ public class Member {
 
     @Builder
     public Member(String username, String nickname) {
-        this.setUsername(username);
-        this.setNickname(nickname);
+        this.username = username;
+        this.nickname = nickname;
     }
 
 }

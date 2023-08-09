@@ -29,15 +29,11 @@ public class Seat {
     private SeatStatus status; // EMPTY, OCCUPIED
 
     @Builder
-    public static Seat Seat(Concert concert, int number, int price) {
-        Seat seat = new Seat();
-
-        seat.setConcert(concert);
-        seat.setNumber(number);
-        seat.setPrice(price);
-        seat.setStatus(SeatStatus.EMPTY);
-
-        return seat;
+    public Seat(Concert concert, int number, int price) {
+        this.concert = concert;
+        this.number = number;
+        this.price = price;
+        this.status = SeatStatus.EMPTY;
     }
 
 }

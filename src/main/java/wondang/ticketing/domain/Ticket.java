@@ -30,19 +30,16 @@ public class Ticket {
         this.setStatus(TicketStatus.CANCEL);
     }
 
-    public static Ticket createTicket(Member member, Seat seat, int totalPrice) {
-        Ticket ticket = new Ticket();
+    @Builder
+    public Ticket(Member member, Seat seat, int totalPrice) {
+        this.member = member;
+        member.getTickets().add(this);
 
-        ticket.setMember(member);
-        member.getTickets().add(ticket);
-
-        ticket.setSeat(seat);
-        seat.setTicket(ticket);
+        this.seat = seat;
         seat.setStatus(SeatStatus.OCCUPIED);
+        seat.setTicket(this);
 
-        ticket.setTotalPrice(totalPrice);
-        ticket.setStatus(TicketStatus.PAID);
-
-        return ticket;
+        this.totalPrice = totalPrice;
+        this.status = TicketStatus.PAID;
     }
 }

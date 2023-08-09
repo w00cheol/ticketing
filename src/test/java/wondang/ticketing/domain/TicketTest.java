@@ -35,7 +35,12 @@ public class TicketTest {
 
         Seat findSeat = seat.orElseThrow(() -> new IllegalArgumentException());
 
-        Ticket ticket = Ticket.createTicket(member, findSeat, findSeat.getPrice() + extraPrice);
+        Ticket ticket = Ticket.builder()
+                .member(member)
+                .seat(findSeat)
+                .totalPrice(findSeat.getPrice() + extraPrice)
+                .build();
+
         System.out.println("ticket.getTotalPrice() = " + ticket.getTotalPrice());
         System.out.println("ticket.getSeat().getId() = " + ticket.getSeat().getId());
         em.persist(ticket);
