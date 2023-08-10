@@ -1,6 +1,6 @@
 package wondang.ticketing.service;
 
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wondang.ticketing.domain.Concert;
@@ -26,6 +26,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<Member> findByUsername(String username) {
         return memberRepository.findByUsername(username);
     }

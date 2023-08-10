@@ -1,6 +1,6 @@
 package wondang.ticketing.service;
 
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wondang.ticketing.domain.Concert;
@@ -27,6 +27,7 @@ public class ConcertServiceImpl implements ConcertService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<Concert> findById(Long id) {
         return concertRepository.findById(id);
     }
