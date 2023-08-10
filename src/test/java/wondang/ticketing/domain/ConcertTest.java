@@ -68,6 +68,18 @@ public class ConcertTest {
         }
     }
 
+    @Test
+    public void findSeatByNumber() {
+        int cnt = 1;
+        Concert concert = newConcert();
+        concert.addSeat(cnt, 3000);
+
+        em.persist(concert);
+        Seat findSeat = concert.findSeatByNumber(cnt);
+
+        assertThat(findSeat).isEqualTo(concert.getSeats().get(cnt - 1));
+    }
+
     public static Concert newConcert() {
         return Concert.builder()
                 .name("레디스를 써보자")

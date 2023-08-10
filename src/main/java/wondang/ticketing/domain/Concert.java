@@ -53,6 +53,14 @@ public class Concert {
         this.cntSeat += cnt;
     }
 
+    public Seat findSeatByNumber(int number) {
+        if (number > cntSeat) {
+            throw new IllegalStateException("해당 좌석은 존재하지 않습니다.");
+        }
+
+        return this.seats.get(number - 1);
+    }
+
     public Boolean isOver() {
         LocalDateTime now = LocalDateTime.now();
         LocalDate date = now.toLocalDate();
