@@ -3,7 +3,6 @@ package wondang.ticketing.service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wondang.ticketing.domain.Concert;
 import wondang.ticketing.domain.Member;
 import wondang.ticketing.repository.MemberRepository;
 
@@ -41,5 +40,11 @@ public class MemberServiceImpl implements MemberService {
         if (!findMembersByNickname.isEmpty()) {
             throw new IllegalStateException("nickname 중복");
         }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Member> findById(Long id) {
+        return memberRepository.findById(id);
     }
 }
