@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import wondang.ticketing.domain.*;
 import wondang.ticketing.policy.DiscountPolicy;
 import wondang.ticketing.repository.TicketRepository;
+import java.util.Optional;
 
 @Transactional
 @Service
@@ -37,5 +38,10 @@ public class TicketService {
 
         Ticket savedTicket = ticketRepository.save(newTicket);
         return savedTicket.getId();
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Ticket> findById(Long id) {
+        return ticketRepository.findById(id);
     }
 }
