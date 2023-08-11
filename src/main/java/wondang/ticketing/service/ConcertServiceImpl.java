@@ -28,9 +28,9 @@ public class ConcertServiceImpl implements ConcertService {
 
     @Override
     public void addSeat(Long id, int cnt, int price) {
-        Concert findConcert = concertRepository.findById(id).orElseThrow(() -> {
-            throw new IllegalStateException();
-        });
+        Concert findConcert = concertRepository.findById(id).orElseThrow(() ->
+                new IllegalStateException()
+        );
 
         findConcert.addSeat(cnt, price);
     }

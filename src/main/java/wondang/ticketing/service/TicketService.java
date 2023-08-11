@@ -17,13 +17,13 @@ public class TicketService {
     @Autowired DiscountPolicy discountPolicy;
 
     public Long createTicket(Long memberId, Long concertId, int number) {
-        Member member = memberService.findById(memberId).orElseThrow(() -> {
-            throw new IllegalStateException("존재하지 않는 회원입니다.");
-        });
+        Member member = memberService.findById(memberId).orElseThrow(() ->
+                new IllegalStateException("존재하지 않는 회원입니다.")
+        );
 
-        Concert concert = concertService.findById(concertId).orElseThrow(() -> {
-            throw new IllegalStateException("존재하지 않는 공연입니다.");
-        });
+        Concert concert = concertService.findById(concertId).orElseThrow(() ->
+                new IllegalStateException("존재하지 않는 공연입니다.")
+        );
 
         Seat seat = concert.findSeatByNumber(number);
 
